@@ -1,0 +1,12 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+license="GNU General Public License v3"
+[[mods]]
+modId="withereggs"
+version="${file.jarVersion}"
+displayName="WitherEggs"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/wither-eggs"
+authors="IchHabeHunger54"
+description='''
+Adds spawn eggs for the Wither, the Ender Dragon, the Iron Golem and the Snow Golem.
+'''
