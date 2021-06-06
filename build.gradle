@@ -1,28 +1,22 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
-
 apply plugin: 'net.minecraftforge.gradle'
-
-version = modVersion
-group = modGroup
-archivesBaseName = modBaseName
-
+group = 'ihh'
+version = '1.16.5-1.2'
+archivesBaseName = 'withereggs'
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
-
 minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    mappings channel: 'snapshot', version: '20210309-1.16.5'
     runs {
         client {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
                 withereggs {
@@ -32,7 +26,6 @@ minecraft {
         }
         server {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
                 withereggs {
@@ -42,9 +35,8 @@ minecraft {
         }
         data {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'withereggs', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'withereggs', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
             mods {
                 withereggs {
                     source sourceSets.main
@@ -53,7 +45,21 @@ minecraft {
         }
     }
 }
-
+sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
 }
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "withereggs",
+                "Specification-Vendor"    : "IchHabeHunger54",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.version,
+                "Implementation-Vendor"   : "IchHabeHunger54",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+jar.finalizedBy('reobfJar')
