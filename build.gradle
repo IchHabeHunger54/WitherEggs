@@ -76,7 +76,8 @@ processResources {
     duplicatesStrategy DuplicatesStrategy.INCLUDE
     from(sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
-        expand 'mod_id': mod_id, 'mod_name': mod_name, 'mod_version': mod_version, 'mod_url': mod_url,
+        expand 'mod_id': mod_id, 'mod_name': mod_name,
+                'mod_version': mod_version, 'mod_url': mod_url,
                 'mod_updates': mod_updates,
                 'mod_authors': mod_authors,
                 'mod_credits': mod_credits,

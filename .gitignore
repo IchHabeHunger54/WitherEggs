@@ -1,11 +1,11 @@
 $RECYCLE.BIN/
 **/build/
-.gradle
-.idea/
-.idea_modules/
-build/
-out/
-run/
+/.gradle
+/.idea/
+/.idea_modules/
+/build/
+/out/
+/run/
 *.cab
 *.class
 *.ctxt
