@@ -4,7 +4,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -23,8 +23,8 @@ public class WitherEggs {
         RegistryObject<ForgeSpawnEggItem> illusionerSpawnEgg = ITEMS.register("illusioner_spawn_egg", () -> new ForgeSpawnEggItem(() -> EntityType.ILLUSIONER, 0x959b9b, 0x135993, properties));
         RegistryObject<ForgeSpawnEggItem> giantSpawnEgg = ITEMS.register("giant_spawn_egg", () -> new ForgeSpawnEggItem(() -> EntityType.GIANT, 0x799c65, 0x00afaf, properties));
         ITEMS.register(bus);
-        bus.<CreativeModeTabEvent.BuildContents>addListener(e -> {
-            if (e.getTab() == CreativeModeTabs.SPAWN_EGGS) {
+        bus.<BuildCreativeModeTabContentsEvent>addListener(e -> {
+            if (e.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
                 e.accept(illusionerSpawnEgg);
                 e.accept(giantSpawnEgg);
             }
